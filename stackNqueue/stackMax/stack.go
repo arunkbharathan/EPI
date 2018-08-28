@@ -14,8 +14,17 @@ type stack struct {
 	freq  []rep
 }
 
-func (s *stack) top() int {
-	return s.stack[len(s.stack)-1]
+func (s *stack) top() (int, bool) {
+	if len(s.stack) == 0 {
+		return 0, false
+	}
+	return s.stack[len(s.stack)-1], true
+}
+func (s *stack) max() (int, bool) {
+	if len(s.freq) == 0 {
+		return 0, false
+	}
+	return s.freq[len(s.freq)-1].max, true
 }
 
 func (s *stack) push(i int) {
